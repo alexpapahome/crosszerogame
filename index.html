@@ -19,19 +19,23 @@
     const initData = tg.initData;
     const gasEndpoint = 'https://script.google.com/macros/s/AKfycbzy0XMaRjx3iz0nyc3EhwsfI__V4tkLRCFq2S2Bc9Zejpi4dPI8aiimf86chIorDVJ3/exec';
 
-    const urlWithParams = gasEndpoint + '?initData=' + encodeURIComponent(initData);
-    
-    fetch(urlWithParams, {
-      method: 'GET'
-    })
-    .then(response => response.json())
+    //const urlWithParams = gasEndpoint + '?initData=' + encodeURIComponent(initData);
+
+fetch(gasEndpoint, {
+  method: 'POST',
+  body: JSON.stringify({
+    initData: initData,
+    // другие данные
+  })
+})
+.then(response => response.json())
     .then(data => {
       if (data.success) {
-        statusDiv.textContent = 'Данные валидны. ID пользователя:' + data.user_id;
-        console.log('Данные валидны. ID пользователя:', data.user_id);
+        statusDiv.textContent = 'Данные валидны. ID пользователя:' + data.userId;
+        console.log('Данные валидны. ID пользователя:', data.userId);
       } else {
-        statusDiv.textContent = 'Ошибка валидации:' + data.error + data.diagnostic;
-        console.error('Ошибка валидации:', data.error, data.diagnostic);
+        statusDiv.textContent = 'Ошибка валидации:' + data.error;
+        console.error('Ошибка валидации:', data.error);
       }
     })
     .catch(error => {
