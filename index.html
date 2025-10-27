@@ -35,7 +35,7 @@
       }
     })
     .catch(error => {
-      statusDiv.textContent = 'Ошибка запроса:' + error;
+      statusDiv.textContent = 'Ошибка запроса:' + error + '<br/>' + data.diagnostic;
       console.error('Ошибка запроса:', error);
     });
   });
