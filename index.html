@@ -26,10 +26,12 @@ console.log('Contains %5C:', initData.includes('%5C'));
 
 fetch(gasEndpoint, {
   method: 'POST',
-    headers: {
-        'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ initData: initData })
+  headers: {
+    'Content-Type': 'text/plain'
+  },
+  body: JSON.stringify({
+    initData: initData
+  })
 })
 .then(response => response.json())
     .then(data => {
