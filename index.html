@@ -26,7 +26,20 @@
 if (initData) {
   const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzy0XMaRjx3iz0nyc3EhwsfI__V4tkLRCFq2S2Bc9Zejpi4dPI8aiimf86chIorDVJ3/exec';
 
-const queryString = `initData=${encodeURIComponent(initData)}`;
+fetch(SCRIPT_URL, {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'text/plain'
+  },
+  body: JSON.stringify({
+    initData: initData
+  })
+})
+.then(response => response.json())
+.then(data => console.log('Response:', data))
+.catch(error => console.error('Error:', error));
+  
+/*const queryString = `initData=${encodeURIComponent(initData)}`;
 fetch(`${SCRIPT_URL}?${queryString}`, {
     method: 'GET',
     // GET-запросы не имеют тела и не вызывают проблем с CORS
@@ -42,7 +55,7 @@ fetch(`${SCRIPT_URL}?${queryString}`, {
   .catch(error => {
     console.error('Ошибка запроса к GAS:', error);
   });
-}
+}*/
   /*
 const dataToSend = encodeURIComponent(initData);
   
