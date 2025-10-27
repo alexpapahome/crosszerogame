@@ -6,7 +6,7 @@
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 <body>
-  <button id="verifyButton">Verificate me</button>
+  <button id="verifyButton">Validate me</button>
   <div id="status"></div>
   
 <script>
@@ -14,7 +14,7 @@
 
   document.getElementById('verifyButton').addEventListener('click', async () => {
     const statusDiv = document.getElementById('status');
-    statusDiv.textContent = 'Checking...';
+    statusDiv.textContent = 'Validating...';
 
     const initData = tg.initData;
     console.log('Raw initData:', initData);
@@ -37,7 +37,16 @@ fetch(SCRIPT_URL, {
   })*/
 })
 .then(response => response.json())
-.then(data => console.log('Response:', data))
+.then(data => {
+  if (data.success) {
+    document.getElementById('status').innerText = 'Validation OK 👍';
+        //console.log('Данные валидны. ID пользователя:', data.user_id);
+    } else {
+    document.getElementById('status').innerText = 'Validation failed 🤔';
+        //console.error('Ошибка валидации:', data.error);
+    }
+  console.log('Response:', data)
+})
 .catch(error => console.error('Error:', error));
   
       }
