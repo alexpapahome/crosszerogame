@@ -10,7 +10,9 @@
 <body>
 	<div class="casualBlock">
 		<button id="verifyButton" style="display:none">Validate me</button>
-		<div id="status">Press the button to validation</div>
+		<div id="status">Click the button to validate</div>
+		<div><span>Saved session ID:</span><span id="savedSessionId"></span></div>
+		<div><span>New session ID:</span><span id="newSessionId"></span></div>
 	</div>
   
 <script>
@@ -37,6 +39,7 @@
 			})
 			.then(response => response.json())
 			.then(data => {
+				Telegram.WebApp.MainButton.show();
 				if (data.success) {
 					document.getElementById('status').innerText = 'Validation OK 👍';
 				} else {
