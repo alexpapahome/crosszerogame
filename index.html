@@ -16,15 +16,13 @@
     const statusDiv = document.getElementById('status');
     statusDiv.textContent = 'Checking...';
 
-    const initData = window.Telegram.WebApp.initData;
+    const initData = tg.initData;
     const gasEndpoint = 'https://script.google.com/macros/s/AKfycbzy0XMaRjx3iz0nyc3EhwsfI__V4tkLRCFq2S2Bc9Zejpi4dPI8aiimf86chIorDVJ3/exec';
-      
-    fetch(gasEndpoint, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-        body: JSON.stringify({ initData: initData })
+
+    const urlWithParams = gasEndpoint + '?initData=' + encodeURIComponent(initData);
+    
+    fetch(urlWithParams, {
+      method: 'GET'
     })
     .then(response => response.json())
     .then(data => {
