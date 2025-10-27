@@ -26,7 +26,7 @@
 if (initData) {
   const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzy0XMaRjx3iz0nyc3EhwsfI__V4tkLRCFq2S2Bc9Zejpi4dPI8aiimf86chIorDVJ3/exec';
 
-
+const dataToSend = encodeURIComponent(initData);
   
   fetch(SCRIPT_URL, {
     method: 'POST',
@@ -35,7 +35,7 @@ if (initData) {
       'Content-Type': 'text/plain', 
     },
     body: JSON.stringify({
-      initData: initData, // Отправляем строку initData
+      initData: dataToSend, // Отправляем строку initData
       // можно добавить и другие параметры
     })
   })
