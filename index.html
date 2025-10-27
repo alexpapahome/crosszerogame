@@ -30,12 +30,12 @@
         statusDiv.textContent = 'Данные валидны. ID пользователя:' + data.user_id;
         console.log('Данные валидны. ID пользователя:', data.user_id);
       } else {
-        statusDiv.textContent = 'Ошибка валидации:' + data.error;
-        console.error('Ошибка валидации:', data.error);
+        statusDiv.textContent = 'Ошибка валидации:' + data.error + data.diagnostic;
+        console.error('Ошибка валидации:', data.error, data.diagnostic);
       }
     })
     .catch(error => {
-      statusDiv.textContent = 'Ошибка запроса:' + error + '<br/>' + data.diagnostic;
+      statusDiv.textContent = 'Ошибка запроса:' + error;
       console.error('Ошибка запроса:', error);
     });
   });
