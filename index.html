@@ -39,51 +39,7 @@ fetch(SCRIPT_URL, {
 .then(data => console.log('Response:', data))
 .catch(error => console.error('Error:', error));
   
-/*const queryString = `initData=${encodeURIComponent(initData)}`;
-fetch(`${SCRIPT_URL}?${queryString}`, {
-    method: 'GET',
-    // GET-запросы не имеют тела и не вызывают проблем с CORS
-  })
-  .then(response => response.json())
-  .then(data => {
-    if (data.success) {
-      console.log('Аутентификация успешна.');
-    } else {
-      console.error('Ошибка валидации:', data.message);
-    }
-  })
-  .catch(error => {
-    console.error('Ошибка запроса к GAS:', error);
-  });
-}*/
-  /*
-const dataToSend = encodeURIComponent(initData);
-  
-  fetch(SCRIPT_URL, {
-    method: 'POST',
-    headers: {
-      // Это простой запрос, не вызывающий CORS-preflight
-      'Content-Type': 'text/plain', 
-    },
-    body: JSON.stringify({
-      initData: dataToSend, // Отправляем строку initData
-      // можно добавить и другие параметры
-    })
-  })
-  .then(response => response.json())
-  .then(data => {
-    if (data.success) {
-      console.log('Пользователь аутентифицирован:', data.user);
-      // Здесь код для отображения данных
-    } else {
-      console.error('Ошибка валидации:', data.message);
-      // Здесь код для отображения ошибки
-    }
-  })
-  .catch(error => {
-    console.error('Ошибка запроса к GAS:', error);
-  });
-}*/
+      }
 
   });
 </script>
