@@ -25,16 +25,17 @@
 
 if (initData) {
   const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzy0XMaRjx3iz0nyc3EhwsfI__V4tkLRCFq2S2Bc9Zejpi4dPI8aiimf86chIorDVJ3/exec';
-  const dataToSend = new URLSearchParams({
-    initData: initData
-    // Можно добавить другие параметры здесь
-  }).toString();
+
 
   
   fetch(SCRIPT_URL, {
     method: 'POST',
+    headers: {
+      // Это простой запрос, не вызывающий CORS-preflight
+      'Content-Type': 'text/plain', 
+    },
     body: JSON.stringify({
-      initData: dataToSend, // Отправляем строку initData
+      initData: initData, // Отправляем строку initData
       // можно добавить и другие параметры
     })
   })
