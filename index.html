@@ -1,29 +1,29 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
+	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 	<title>tg Validation</title>
 	<link rel="stylesheet" href="style.css">
-  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+	<script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 <body>
-  <button id="verifyButton">Validate me</button>
-  <div id="status"></div>
+	<button id="verifyButton" style="display:hide">Validate me</button>
+	<div id="status"></div>
   
 <script>
-  const tg = window.Telegram.WebApp;
+	const tg = window.Telegram.WebApp;
 
-  Telegram.WebApp.MainButton.text = "Validate me!";
-  Telegram.WebApp.MainButton.show();
+	Telegram.WebApp.MainButton.text = "Validate me!";
+	Telegram.WebApp.MainButton.show();
 
-  Telegram.WebApp.MainButton.onClick(() => {
-    const statusDiv = document.getElementById('status');
-    statusDiv.textContent = 'Validating...';
-    Telegram.WebApp.MainButton.hide();
-    const initData = tg.initData;
+	Telegram.WebApp.MainButton.onClick(() => {
+		const statusDiv = document.getElementById('status');
+		statusDiv.textContent = 'Validating...';
+		Telegram.WebApp.MainButton.hide();
+		const initData = tg.initData;
 
-    if (initData) {
+		if (initData) {
 			const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzy0XMaRjx3iz0nyc3EhwsfI__V4tkLRCFq2S2Bc9Zejpi4dPI8aiimf86chIorDVJ3/exec';
 
 			fetch(SCRIPT_URL, {
@@ -44,7 +44,7 @@
 			})
 			.catch(error => console.error('Error:', error));
 		}
-	}
+	)};
 
 
 
