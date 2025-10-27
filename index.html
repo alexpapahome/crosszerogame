@@ -26,6 +26,24 @@
 if (initData) {
   const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzy0XMaRjx3iz0nyc3EhwsfI__V4tkLRCFq2S2Bc9Zejpi4dPI8aiimf86chIorDVJ3/exec';
 
+const queryString = `initData=${encodeURIComponent(initData)}`;
+fetch(`${SCRIPT_URL}?${queryString}`, {
+    method: 'GET',
+    // GET-запросы не имеют тела и не вызывают проблем с CORS
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.success) {
+      console.log('Аутентификация успешна.');
+    } else {
+      console.error('Ошибка валидации:', data.message);
+    }
+  })
+  .catch(error => {
+    console.error('Ошибка запроса к GAS:', error);
+  });
+}
+  /*
 const dataToSend = encodeURIComponent(initData);
   
   fetch(SCRIPT_URL, {
@@ -52,7 +70,7 @@ const dataToSend = encodeURIComponent(initData);
   .catch(error => {
     console.error('Ошибка запроса к GAS:', error);
   });
-}
+}*/
 
   });
 </script>
