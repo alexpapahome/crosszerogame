@@ -18,33 +18,39 @@
 
     const initData = tg.initData;
     console.log('Raw initData:', initData);
-console.log('Contains \\:', initData.includes('\\'));
-console.log('Contains %5C:', initData.includes('%5C'));
-    const gasEndpoint = 'https://script.google.com/macros/s/AKfycbzy0XMaRjx3iz0nyc3EhwsfI__V4tkLRCFq2S2Bc9Zejpi4dPI8aiimf86chIorDVJ3/exec';
+
 
     //const urlWithParams = gasEndpoint + '?initData=' + encodeURIComponent(initData);
+const initData = window.Telegram.WebApp.initData;
 
+if (initData) {
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzy0XMaRjx3iz0nyc3EhwsfI__V4tkLRCFq2S2Bc9Zejpi4dPI8aiimf86chIorDVJ3/exec';
 
-fetch(gasEndpoint, {
-  method: 'POST',
-  body: JSON.stringify({
-    initData: initData
-  })
-})
-.then(response => response.json())
-    .then(data => {
-      if (data.success) {
-        statusDiv.textContent = 'Данные валидны. ID пользователя:' + data.userId;
-        console.log('Данные валидны. ID пользователя:', data.userId);
-      } else {
-        statusDiv.textContent = 'Ошибка валидации:' + data.error;
-        console.error('Ошибка валидации:', data.error);
-      }
+  fetch(SCRIPT_URL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      initData: initData, // Отправляем строку initData
+      // можно добавить и другие параметры
     })
-    .catch(error => {
-      statusDiv.textContent = 'Ошибка запроса:' + error;
-      console.error('Ошибка запроса:', error);
-    });
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.success) {
+      console.log('Пользователь аутентифицирован:', data.user);
+      // Здесь код для отображения данных
+    } else {
+      console.error('Ошибка валидации:', data.message);
+      // Здесь код для отображения ошибки
+    }
+  })
+  .catch(error => {
+    console.error('Ошибка запроса к GAS:', error);
+  });
+}
+
   });
 </script>
 </body>
