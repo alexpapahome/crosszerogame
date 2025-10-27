@@ -24,6 +24,9 @@
 
 fetch(gasEndpoint, {
   method: 'POST',
+  headers: {
+        'Content-Type': 'application/json'
+    },
   body: JSON.stringify({
     initData: initData,
     // другие данные
