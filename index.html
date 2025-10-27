@@ -17,7 +17,9 @@
     statusDiv.textContent = 'Checking...';
 
     const initData = tg.initData;
-    console.log (initData);
+    console.log('Raw initData:', initData);
+console.log('Contains \\:', initData.includes('\\'));
+console.log('Contains %5C:', initData.includes('%5C'));
     const gasEndpoint = 'https://script.google.com/macros/s/AKfycbzy0XMaRjx3iz0nyc3EhwsfI__V4tkLRCFq2S2Bc9Zejpi4dPI8aiimf86chIorDVJ3/exec';
 
     //const urlWithParams = gasEndpoint + '?initData=' + encodeURIComponent(initData);
