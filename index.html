@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<title>tg Validation</title>
+	<link rel="stylesheet" href="style.css">
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 <body>
@@ -12,6 +14,42 @@
 <script>
   const tg = window.Telegram.WebApp;
 
+  Telegram.WebApp.MainButton.text = "Validate me!";
+  Telegram.WebApp.MainButton.show();
+
+  Telegram.WebApp.MainButton.onClick(() => {
+    const statusDiv = document.getElementById('status');
+    statusDiv.textContent = 'Validating...';
+    Telegram.WebApp.MainButton.hide();
+    const initData = tg.initData;
+
+    if (initData) {
+			const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzy0XMaRjx3iz0nyc3EhwsfI__V4tkLRCFq2S2Bc9Zejpi4dPI8aiimf86chIorDVJ3/exec';
+
+			fetch(SCRIPT_URL, {
+  			method: 'POST',
+				headers: {
+					'Content-Type': 'text/plain'
+				},
+				body: initData
+			})
+			.then(response => response.json())
+			.then(data => {
+				if (data.success) {
+					document.getElementById('status').innerText = 'Validation OK 👍';
+				} else {
+					document.getElementById('status').innerText = 'Validation failed 🤔';
+				}
+				console.log('Response:', data)
+			})
+			.catch(error => console.error('Error:', error));
+		}
+	}
+
+
+
+
+/*
   document.getElementById('verifyButton').addEventListener('click', async () => {
     const statusDiv = document.getElementById('status');
     statusDiv.textContent = 'Validating...';
@@ -32,9 +70,9 @@ fetch(SCRIPT_URL, {
     'Content-Type': 'text/plain'
   },
   body: initData
-  /*body: JSON.stringify({
-    initData: initData
-  })*/
+  //body: JSON.stringify({
+  //initData: initData
+  })
 })
 .then(response => response.json())
 .then(data => {
@@ -52,5 +90,6 @@ fetch(SCRIPT_URL, {
       }
 
   });
+*/
 </script>
 </body>
