@@ -38,7 +38,7 @@
 		gameRoomIdText.innerText = roomId;
 	}
 	
-	Telegram.WebApp.MainButton.text = "🚩 Action!";
+	Telegram.WebApp.MainButton.text = "🎮 Action!";
 	Telegram.WebApp.MainButton.show();
 
 	Telegram.WebApp.MainButton.onClick(() => {
@@ -71,8 +71,14 @@
 					newSessionIdText.innerText = sessionId;
 					localStorage.setItem('sessionId', sessionId);
 					roomData = data.roomData;
-					if (roomId && !roomData) {
-						gameRoomIdText.innerText = "Can't find this room 🤔";
+					if (roomId == '') {
+						gameRoomIdText.innerText = "A new room has been created! Room ID:" + roomData.roomId + " Invite a friend to start the game!";
+					}
+					if (roomId != '' && roomId !== roomData.roomId) {
+						gameRoomIdText.innerText = "Room " + roomId + " expired. A new room has been created! Room ID:" + roomData.roomId + " Invite a friend to start the game!";
+					}
+					if (!roomData) {
+						gameRoomIdText.innerText = "Can't fcreate room 🤔";
 					}
 				} else {
 					statusText.innerText = 'Validation failed 🤔';
