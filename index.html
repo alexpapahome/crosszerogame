@@ -13,6 +13,7 @@
 		<div id="status">Click the Action button</div>
 		<div><span>Saved session ID: </span><span id="savedSessionId"></span></div>
 		<div><span>New session ID: </span><span id="newSessionId"></span></div>
+		<div><span>Game room ID: </span><span id="gameRoomId"></span></div>
 	</div>
   
 <script>
@@ -20,6 +21,7 @@
 	
 	const savedSessionIdText = document.getElementById('savedSessionId');
 	const newSessionIdText = document.getElementById('newSessionId');
+	const gameRoomIdText = document.getElementById('newSessionId');
 	const statusText = document.getElementById('status');
 
 	let sessionId = localStorage.getItem('sessionId');
@@ -29,6 +31,8 @@
 	} else {
 		savedSessionIdText.innerText = '...';
 	}
+
+	gameRoomIdText.innerText = tg.startapp;
 	
 	Telegram.WebApp.MainButton.text = "🚩 Action!";
 	Telegram.WebApp.MainButton.show();
