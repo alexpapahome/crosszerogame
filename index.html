@@ -44,6 +44,7 @@
 	Telegram.WebApp.MainButton.show();
 
 	Telegram.WebApp.MainButton.onClick(() => {
+		let roomData;
 		const statusDiv = document.getElementById('status');
 		statusDiv.textContent = 'Validating...';
 		Telegram.WebApp.MainButton.hide();
