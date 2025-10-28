@@ -70,7 +70,7 @@
 					sessionId = data.sessionId;
 					newSessionIdText.innerText = sessionId;
 					localStorage.setItem('sessionId', sessionId);
-					roomData = data.roomData;
+					roomData = JSON.parse(data.roomData);
 					if (roomId == '') {
 						gameRoomIdText.innerText = "A new room has been created! Room ID:" + roomData.roomId + " Invite a friend to start the game!";
 					}
