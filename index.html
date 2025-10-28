@@ -21,7 +21,7 @@
 	
 	const savedSessionIdText = document.getElementById('savedSessionId');
 	const newSessionIdText = document.getElementById('newSessionId');
-	const gameRoomIdText = document.getElementById('newSessionId');
+	const gameRoomIdText = document.getElementById('gameRoomId');
 	const statusText = document.getElementById('status');
 
 	let sessionId = localStorage.getItem('sessionId');
@@ -32,7 +32,11 @@
 		savedSessionIdText.innerText = '...';
 	}
 
-	gameRoomIdText.innerText = tg.initDataUnsafe.start_param;
+	let roomId = '';
+	if (tg.initDataUnsafe.start_param != undefined) {
+		roomId = tg.initDataUnsafe.start_param;
+		gameRoomIdText.innerText = roomId;
+	}
 	
 	Telegram.WebApp.MainButton.text = "🚩 Action!";
 	Telegram.WebApp.MainButton.show();
