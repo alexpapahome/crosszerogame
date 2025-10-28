@@ -73,9 +73,11 @@
 					roomData = JSON.parse(data.roomData);
 					if (roomId == '') {
 						gameRoomIdText.innerText = "A new room has been created! Room ID:" + roomData.roomId + " Invite a friend to start the game!";
+						roomId = roomData.roomId;
 					}
 					if (roomId != '' && roomId !== roomData.roomId) {
 						gameRoomIdText.innerText = "Room " + roomId + " expired. A new room has been created! Room ID:" + roomData.roomId + " Invite a friend to start the game!";
+						roomId = roomData.roomId;
 					}
 					if (!roomData) {
 						gameRoomIdText.innerText = "Can't fcreate room 🤔";
