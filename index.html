@@ -71,6 +71,7 @@
 					newSessionIdText.innerText = sessionId;
 					localStorage.setItem('sessionId', sessionId);
 					roomData = data.roomData;
+					console.log('roomData:', roomData);
 					if (!roomData) {
 						gameRoomIdText.innerText = "Can't create room 🤔";
 					}
