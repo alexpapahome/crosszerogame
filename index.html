@@ -79,6 +79,9 @@
 					}
 					else {
 						roomData = JSON.parse(data.roomData);
+						if (roomId === roomData.roomId) {
+							gameRoomStatusText.innerText = "Room OK. Starting game...";
+						}
 						if (roomId == '') {
 							gameRoomStatusText.innerText = "A new room has been created! Room ID:" + roomData.roomId + " Invite a friend to start the game!";
 							roomId = roomData.roomId;
@@ -86,9 +89,6 @@
 						if (roomId != '' && roomId !== roomData.roomId) {
 							gameRoomStatusText.innerText = "Room " + roomId + " expired. A new room has been created! Room ID:" + roomData.roomId + " Invite a friend to start the game!";
 							roomId = roomData.roomId;
-						}
-						if (roomId === roomData.roomId) {
-							gameRoomStatusText.innerText = "Room OK. Starting game...";
 						}
 					}
 					gameRoomIdText.innerText = roomId;
