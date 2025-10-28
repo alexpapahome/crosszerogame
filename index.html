@@ -57,7 +57,8 @@
 				},
 				body: JSON.stringify({
 					initData: initData,
-					sessionId: sessionId
+					sessionId: sessionId,
+					roomId: roomId
 				})
 			})
 			.then(response => response.json())
@@ -69,6 +70,10 @@
 					sessionId = data.sessionId;
 					newSessionIdText.innerText = sessionId;
 					localStorage.setItem('sessionId', sessionId);
+					roomData = data.roomData;
+					if (roomId && !roomData) {
+						gameRoomIdText.innerText = "Can't find this room 🤔";
+					}
 				} else {
 					statusText.innerText = 'Validation failed 🤔';
 				}
