@@ -17,11 +17,12 @@
   
 <script>
 	const tg = window.Telegram.WebApp;
+	
 	const savedSessionIdText = document.getElementById('savedSessionId');
 	const newSessionIdText = document.getElementById('newSessionId');
 	const statusText = document.getElementById('status');
 
-	const savedSessionId = localStorage.getItem('savedSessionId');
+	const savedSessionId = localStorage.getItem('sessionId');
 	//const retrievedObject = JSON.parse(localStorage.getItem('userData'));
 	if (savedSessionId !== null) {
 		savedSessionIdText.innerText = savedSessionId;
@@ -29,7 +30,7 @@
 		savedSessionIdText.innerText = '...';
 	}
 	
-	Telegram.WebApp.MainButton.text = "Validate me!";
+	Telegram.WebApp.MainButton.text = "🚩 Action!";
 	Telegram.WebApp.MainButton.show();
 
 	Telegram.WebApp.MainButton.onClick(() => {
@@ -58,6 +59,7 @@
 					//document.getElementById('status').innerText = 'Validation OK 👍';
 					statusText.innerText = data.message;
 					newSessionIdText.innerText = data.sessionId;
+					localStorage.setItem('sessionId', data.sessionId);
 				} else {
 					statusText.innerText = 'Validation failed 🤔';
 				}
