@@ -82,6 +82,9 @@
 					if (!roomData) {
 						gameRoomIdText.innerText = "Can't fcreate room 🤔";
 					}
+					if (roomId === roomData.roomId) {
+						gameRoomIdText.innerText = "Room OK. Starting game...";
+					}
 				} else {
 					statusText.innerText = 'Validation failed 🤔';
 				}
