@@ -78,7 +78,7 @@
 						gameRoomStatusText.innerText = "Can't create room 🤔";
 					}
 					else {
-						//roomData = JSON.parse(data.roomData);
+						roomData = JSON.parse(data.roomData);
 						if (roomId == '') {
 							gameRoomStatusText.innerText = "A new room has been created! Room ID:" + roomData.roomId + " Invite a friend to start the game!";
 							roomId = roomData.roomId;
