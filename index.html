@@ -79,7 +79,7 @@
 						gameRoomStatusText.innerText = "Can't create room 🤔";
 					}
 					else {
-						roomData = JSON.parse(data.roomData);
+						roomData = JSON.parse(JSON.stringify(data.roomData));
 						if (roomId === roomData.roomId) {
 							gameRoomStatusText.innerText = "Room OK. Starting game...";
 						}
