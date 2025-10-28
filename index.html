@@ -22,7 +22,7 @@
 	const newSessionIdText = document.getElementById('newSessionId');
 	const statusText = document.getElementById('status');
 
-	const sessionId = localStorage.getItem('sessionId');
+	let sessionId = localStorage.getItem('sessionId');
 	//const retrievedObject = JSON.parse(localStorage.getItem('userData'));
 	if (sessionId !== null) {
 		savedSessionIdText.innerText = sessionId;
@@ -58,8 +58,9 @@
 				if (data.success) {
 					//document.getElementById('status').innerText = 'Validation OK 👍';
 					statusText.innerText = data.message;
-					newSessionIdText.innerText = data.sessionId;
-					localStorage.setItem('sessionId', data.sessionId);
+					sessionId = data.sessionId;
+					newSessionIdText.innerText = sessionId;
+					localStorage.setItem('sessionId', sessionId);
 				} else {
 					statusText.innerText = 'Validation failed 🤔';
 				}
