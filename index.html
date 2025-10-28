@@ -70,20 +70,23 @@
 					sessionId = data.sessionId;
 					newSessionIdText.innerText = sessionId;
 					localStorage.setItem('sessionId', sessionId);
-					roomData = JSON.parse(data.roomData);
-					if (roomId == '') {
-						gameRoomIdText.innerText = "A new room has been created! Room ID:" + roomData.roomId + " Invite a friend to start the game!";
-						roomId = roomData.roomId;
-					}
-					if (roomId != '' && roomId !== roomData.roomId) {
-						gameRoomIdText.innerText = "Room " + roomId + " expired. A new room has been created! Room ID:" + roomData.roomId + " Invite a friend to start the game!";
-						roomId = roomData.roomId;
-					}
+					roomData = data.roomData;
 					if (!roomData) {
-						gameRoomIdText.innerText = "Can't fcreate room 🤔";
+						gameRoomIdText.innerText = "Can't create room 🤔";
 					}
-					if (roomId === roomData.roomId) {
-						gameRoomIdText.innerText = "Room OK. Starting game...";
+					else {
+						roomData = JSON.parse(data.roomData);
+						if (roomId == '') {
+							gameRoomIdText.innerText = "A new room has been created! Room ID:" + roomData.roomId + " Invite a friend to start the game!";
+							roomId = roomData.roomId;
+						}
+						if (roomId != '' && roomId !== roomData.roomId) {
+							gameRoomIdText.innerText = "Room " + roomId + " expired. A new room has been created! Room ID:" + roomData.roomId + " Invite a friend to start the game!";
+							roomId = roomData.roomId;
+						}
+						if (roomId === roomData.roomId) {
+							gameRoomIdText.innerText = "Room OK. Starting game...";
+						}
 					}
 				} else {
 					statusText.innerText = 'Validation failed 🤔';
