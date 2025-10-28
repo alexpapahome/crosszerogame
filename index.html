@@ -14,6 +14,7 @@
 		<div><span>Saved session ID: </span><span id="savedSessionId"></span></div>
 		<div><span>New session ID: </span><span id="newSessionId"></span></div>
 		<div><span>Game room ID: </span><span id="gameRoomId"></span></div>
+		<div><span>Room status: </span><span id="gameRoomStatus"></span></div>
 	</div>
   
 <script>
@@ -22,6 +23,7 @@
 	const savedSessionIdText = document.getElementById('savedSessionId');
 	const newSessionIdText = document.getElementById('newSessionId');
 	const gameRoomIdText = document.getElementById('gameRoomId');
+	const gameRoomStatusText = document.getElementById('gameRoomStatus');
 	const statusText = document.getElementById('status');
 
 	let sessionId = localStorage.getItem('sessionId');
@@ -73,22 +75,23 @@
 					roomData = data.roomData;
 					console.log('roomData:', roomData);
 					if (!roomData) {
-						gameRoomIdText.innerText = "Can't create room 🤔";
+						gameRoomStatusText.innerText = "Can't create room 🤔";
 					}
 					else {
 						//roomData = JSON.parse(data.roomData);
 						if (roomId == '') {
-							gameRoomIdText.innerText = "A new room has been created! Room ID:" + roomData.roomId + " Invite a friend to start the game!";
+							gameRoomStatusText.innerText = "A new room has been created! Room ID:" + roomData.roomId + " Invite a friend to start the game!";
 							roomId = roomData.roomId;
 						}
 						if (roomId != '' && roomId !== roomData.roomId) {
-							gameRoomIdText.innerText = "Room " + roomId + " expired. A new room has been created! Room ID:" + roomData.roomId + " Invite a friend to start the game!";
+							gameRoomStatusText.innerText = "Room " + roomId + " expired. A new room has been created! Room ID:" + roomData.roomId + " Invite a friend to start the game!";
 							roomId = roomData.roomId;
 						}
 						if (roomId === roomData.roomId) {
-							gameRoomIdText.innerText = "Room OK. Starting game...";
+							gameRoomStatusText.innerText = "Room OK. Starting game...";
 						}
 					}
+					gameRoomIdText.innerText = roomId;
 				} else {
 					statusText.innerText = 'Validation failed 🤔';
 				}
