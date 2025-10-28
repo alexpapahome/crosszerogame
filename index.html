@@ -22,10 +22,10 @@
 	const newSessionIdText = document.getElementById('newSessionId');
 	const statusText = document.getElementById('status');
 
-	const savedSessionId = localStorage.getItem('sessionId');
+	const sessionId = localStorage.getItem('sessionId');
 	//const retrievedObject = JSON.parse(localStorage.getItem('userData'));
-	if (savedSessionId !== null) {
-		savedSessionIdText.innerText = savedSessionId;
+	if (sessionId !== null) {
+		savedSessionIdText.innerText = sessionId;
 	} else {
 		savedSessionIdText.innerText = '...';
 	}
@@ -49,7 +49,7 @@
 				},
 				body: JSON.stringify({
 					initData: initData,
-					savedSessionId: savedSessionId
+					sessionId: sessionId
 				})
 			})
 			.then(response => response.json())
