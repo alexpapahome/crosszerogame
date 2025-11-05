@@ -52,7 +52,11 @@
 
 		if (initData) {
 			const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzy0XMaRjx3iz0nyc3EhwsfI__V4tkLRCFq2S2Bc9Zejpi4dPI8aiimf86chIorDVJ3/exec';
-
+			console.log (JSON.stringify({
+					initData: initData,
+					sessionId: sessionId,
+					roomId: roomId
+				}))
 			fetch(SCRIPT_URL, {
   			method: 'POST',
 				headers: {
